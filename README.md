@@ -7,3 +7,4 @@ For other devs:
 
 Depends to JavaFX
 Compiled with Java 8
+Coded in Mavericks.....just too many errors on windows
