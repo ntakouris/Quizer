@@ -39,6 +39,14 @@ public class Data {
 		
 	}
 	
+	public static void removeAllWithLowerDifficulty(int difficulty){
+		for(Question q : questions){
+			if(q.getDifficultyLevel() < difficulty){
+				questions.remove(q);
+			}
+		}
+	}
+	
 	public static Question getRandomQuestion(boolean isAnswered , int difficultyLevel){
 		
 		int questionNumber = r.nextInt(questions.size());//IKR not good performance but come on...
