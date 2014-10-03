@@ -49,6 +49,10 @@ public class Data {
 	
 	public static Question getRandomQuestion(boolean isAnswered , int difficultyLevel){
 		
+		if(questions.size() == 0){
+			return null;
+		}
+		
 		int questionNumber = r.nextInt(questions.size());//IKR not good performance but come on...
 		
 		Question q = questions.get(questionNumber);
