@@ -24,6 +24,8 @@ public class Main extends Application{
 		stage.setResizable(false);
 
 		//standby for screen resolution (sorry i am too lazy to make it run on different resolutions)
+		//will provide a sort of algorithmic thinking in order to get other developers to be able to
+		//use this thing
 		
 		StackPane root = new StackPane();
 		stage.setScene(new Scene(root));
