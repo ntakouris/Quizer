@@ -25,6 +25,11 @@ public class Main extends Application{
 
 		//Resolution : 1366 x 768 (Fullscreen)
 		
+		//20px
+		//100px next btn -> 20 -> - 20 DDL
+		//50 px
+		//split (res - 50) / 2
+		
 		StackPane root = new StackPane();
 		stage.setScene(new Scene(root));
 		stage.show();
