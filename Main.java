@@ -23,9 +23,7 @@ public class Main extends Application{
 		stage.setTitle("Quizer");
 		stage.setResizable(false);
 
-		//standby for screen resolution (sorry i am too lazy to make it run on different resolutions)
-		//will provide a sort of algorithmic thinking in order to get other developers to be able to
-		//use this thing
+		//Resolution : 1366 x 768 (Fullscreen)
 		
 		StackPane root = new StackPane();
 		stage.setScene(new Scene(root));
