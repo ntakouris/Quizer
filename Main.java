@@ -84,7 +84,6 @@ public class Main extends Application{
 	        public void handle(MouseEvent e) {
 
 	        	if(q.getCorrectAnswer() == 3){
-	        		//greenize button
 	        		ans3.setStyle(green);
 	        	}else{
 	        		redize();
