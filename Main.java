@@ -128,6 +128,11 @@ public class Main extends Application{
 	        }
 		});
 		
+		ans1.setPrefSize(600 , 100);
+		ans2.setPrefSize(600 , 100);
+		ans3.setPrefSize(600 , 100);
+		ans4.setPrefSize(600 , 100);
+		
 		BorderPane borderpane = new BorderPane();
 		
 		HBox topnode = new HBox();
@@ -150,15 +155,15 @@ public class Main extends Application{
 		
 		answers.setPadding(new Insets(40,50 , 50 ,50));
 		
-		answers.setSpacing(1000);
+		answers.setSpacing(360);
 		
 		VBox ans1_3 = new VBox();
 		
-		ans1_3.setSpacing(100);
+		ans1_3.setSpacing(10);
 		
 		VBox ans2_4 = new VBox();
 		
-		ans2_4.setSpacing(100);
+		ans2_4.setSpacing(10);
 		
 		ans1_3.getChildren().addAll(ans1 , ans3);
 		ans2_4.getChildren().addAll(ans2 , ans4);
