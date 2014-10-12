@@ -4,20 +4,21 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextBuilder;
 import javafx.stage.Stage;
 
 public class Main extends Application{
 
 	private Question q;
-	private final String green = "-fx-background-color: green;", red = "-fx-background-color: red;";//css
+	private final String green = "-fx-background-color: lawngreen;", red = "-fx-background-color: red;";//css
 	private Button ans1 , ans2 , ans3 , ans4 , next;
-	private TextArea question;
+	private Text question;
 	
 	public static void main(String[] args) {
 		
@@ -37,10 +38,8 @@ public class Main extends Application{
 		
 		q = Data.getRandomQuestion();
 		
-		question = new TextArea(q.getQuestion());
-		question.setEditable(false);
-		question.setWrapText(true);
-		
+		//question.setWrapText(true);
+		question = TextBuilder.create().text(q.getQuestion()).wrappingWidth(1266).build();
 		question.setStyle("-fx-background-color: transparent;");//needs work
 		
 		stage.setWidth(1366);
@@ -48,16 +47,16 @@ public class Main extends Application{
 		stage.setTitle("Quizer");
 		stage.setResizable(false);
 		
-		ans1 = new Button(q.getAnswer1());
+		ans1 = new Button();
 		
 		ans1.setVisible(true);
-		//ans1.setStyle(red);
+		//ans1.setStyle(green);
 		ans1.addEventHandler(MouseEvent.MOUSE_RELEASED, new EventHandler<MouseEvent>() {
 	        @Override 
 	        public void handle(MouseEvent e) {
 	            
 	        	if(q.getCorrectAnswer() == 1){
-	        		ans1.setStyle(green);
+	        		greenize();
 	        	}else{
 	        		redize();
 	        	}
@@ -65,7 +64,7 @@ public class Main extends Application{
 	        }
 		});
 		
-		ans2 = new Button(q.getAnswer2());
+		ans2 = new Button();
 		
 		ans2.setVisible(true);
 		
@@ -74,7 +73,7 @@ public class Main extends Application{
 	        public void handle(MouseEvent e) {
 
 	        	if(q.getCorrectAnswer() == 2){
-	        		ans2.setStyle(green);
+	        		greenize();
 	        	}else{
 	        		redize();
 	        	}
@@ -82,7 +81,7 @@ public class Main extends Application{
 	        }
 		});
 		
-		ans3 = new Button(q.getAnswer3());
+		ans3 = new Button();
 		
 		ans3.setVisible(true);
 		
@@ -91,7 +90,7 @@ public class Main extends Application{
 	        public void handle(MouseEvent e) {
 
 	        	if(q.getCorrectAnswer() == 3){
-	        		ans3.setStyle(green);
+	        		greenize();
 	        	}else{
 	        		redize();
 	        	}
@@ -99,7 +98,7 @@ public class Main extends Application{
 	        }
 		});
 		
-		ans4 = new Button(q.getAnswer4());
+		ans4 = new Button();
 		
 		ans4.setVisible(true);
 		
@@ -108,7 +107,7 @@ public class Main extends Application{
 	        public void handle(MouseEvent e) {
 
 	        	if(q.getCorrectAnswer() == 4){
-	        		ans4.setStyle(green);
+	        		greenize();
 	        	}else{
 	        		redize();
 	        	}
@@ -118,7 +117,7 @@ public class Main extends Application{
 		
 		next = new Button("Next");
 		
-		next.setVisible(true);
+		next.setVisible(false);
 		next.setPrefSize(300, 100);
 		next.addEventHandler(MouseEvent.MOUSE_RELEASED, new EventHandler<MouseEvent>() {
 	        @Override 
@@ -143,7 +142,7 @@ public class Main extends Application{
 		VBox qbox = new VBox();
 		qbox.setAlignment(Pos.CENTER);
 		qbox.getChildren().add(question);
-		qbox.setPadding(new Insets(50, 10, 50, 10));
+		qbox.setPadding(new Insets(50, 10, 50, 50));
 		
 		borderpane.setCenter(qbox);
 		
@@ -173,32 +172,34 @@ public class Main extends Application{
 		root.getChildren().add(borderpane);
 		stage.setScene(new Scene(root));
 		stage.show();
+		reset();
 	}
 	
 	private void reset(){
 		
-		ans1.setStyle("");
-		ans2.setStyle("");
-		ans3.setStyle("");
-		ans4.setStyle("");
+		question = TextBuilder.create().text(q.getQuestion()).wrappingWidth(1266).build();
+		ans1.setText(TextBuilder.create().text(q.getAnswer1()).wrappingWidth(200).build().getText());
+		ans2.setText(TextBuilder.create().text(q.getAnswer2()).wrappingWidth(200).build().getText());
+		ans3.setText(TextBuilder.create().text(q.getAnswer3()).wrappingWidth(200).build().getText());
+		ans4.setText(TextBuilder.create().text(q.getAnswer4()).wrappingWidth(200).build().getText());
+
 		
-		question.setText(q.getQuestion());
-		ans1.setText(q.getAnswer1());
-		ans2.setText(q.getAnswer2());
-		ans3.setText(q.getAnswer3());
-		ans4.setText(q.getAnswer4());
+		next.setVisible(false);
+		next.setStyle("");
+	}
+	
+	private void greenize(){
 		
+		next.setStyle(green);
 		next.setVisible(true);
+
 	}
 	
 	private void redize(){
 		
-		next.setVisible(false);
-		
-		ans1.setStyle(red);
-		ans2.setStyle(red);
-		ans3.setStyle(red);
-		ans4.setStyle(red);
+		next.setStyle(red);
+		next.setVisible(true);
+
 	}
 	
 }
